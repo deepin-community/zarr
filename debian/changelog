@@ -1,5 +1,339 @@
-template-repository (1.0-1) unstable; urgency=medium
+zarr (2.18.2+ds-2) unstable; urgency=medium
 
-  * Initial release
+  * New upstream release.
+  * debian/control:
+    - Add dependency on python3-gdbm.
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Tue, 28 May 2024 18:04:26 +0000
+
+zarr (2.18.1+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Fri, 17 May 2024 05:49:08 +0000
+
+zarr (2.18.0+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Wed, 08 May 2024 06:44:32 +0000
+
+zarr (2.17.2+ds-2) unstable; urgency=medium
+
+  * debian/rules:
+    - Skip broken test. The issue seems to be due to incorrect
+      assumptions in the test code and triggered by a change in
+      the behavior of "simplecache" in python3-fsspec v2024.3.x.
+      The issue has bee reported upstream:
+      https://github.com/zarr-developers/zarr-python/issues/1819.
+      Closes: #1069843.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Wed, 01 May 2024 16:18:43 +0000
+
+zarr (2.17.2+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sat, 06 Apr 2024 18:15:43 +0000
+
+zarr (2.17.1+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update dates in d/copyright.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sat, 09 Mar 2024 14:25:53 +0000
+
+zarr (2.17.0+ds-2) unstable; urgency=medium
+
+  * debian/rules:
+    - Skip tests on s390x (see
+      https://github.com/zarr-developers/zarr-python/issues/1375).
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sun, 03 Mar 2024 11:26:48 +0000
+
+zarr (2.17.0+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update d/copyright.
+  * debian/control:
+    - Update dependencies: (add python3-sphinx-automodapi,
+      drop python3-sphinx-rtd-theme).
+  * debian/rules:
+    - Updaet the list of tests to skip.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sat, 17 Feb 2024 14:23:49 +0000
+
+zarr (2.16.1+ds-2) unstable; urgency=medium
+
+  * debian/rules:
+    - Temparaty disable tests that are broken on BE
+      architectures.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Thu, 31 Aug 2023 07:50:31 +0000
+
+zarr (2.16.1+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/control:
+    - Use <!nodoc> and <!nocheck> markers.
+  * Switch to autopkgtest-pkg-pybuild and remove the
+    no lonter needed d/tests folder.
+  * Switch to dh-sequence-*.
+  * New d/clean file.
+  * debian/rules:
+    - Use setuptools-scm to generate the version file.
+    - Improve target for HTML doc generarion.
+  * Update d/python3-zarr.lintian-overrides.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sat, 19 Aug 2023 08:25:28 +0000
+
+zarr (2.16.0+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sat, 22 Jul 2023 10:21:34 +0000
+
+zarr (2.15.0+ds-2) unstable; urgency=medium
+
+  * Skip broken test on big-endian architectures. See
+    https://github.com/zarr-developers/zarr-python/issues/1374
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Wed, 28 Jun 2023 06:16:14 +0000
+
+zarr (2.15.0+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sat, 17 Jun 2023 12:33:37 +0000
+
+zarr (2.14.2+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/control:
+    - add build dependency on sphinx-design and
+      pydata-sphinx-theme
+    - bump debhelper-compat to 13.
+  * Disable test_utf8_encoding. It requires external data
+    that are not available in the source package.
+  * Add d/python3-zarr.links and d/python3-zarr.lintian-overrides files.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sun, 11 Jun 2023 14:36:26 +0000
+
+zarr (2.13.6+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update d/copyright.
+  * Standards version bumped to 4.6.2, no changes.
+  * debian/patches:
+    - drop 0001-No-setuptools-scm.patch, no longer needed.
+  * debian/control:
+    - add build-depencency on python3-setuptools-scm.
+  * Enable CI on salsa.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Thu, 19 Jan 2023 07:24:00 +0000
+
+zarr (2.13.3+ds-2) unstable; urgency=medium
+
+  * debian/rules:
+    - explicitly specify LC_ALL=C.UTF-8 LANGUAGE=C.UTF-8 before
+      building the sphinx documentatiion.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Thu, 13 Oct 2022 06:54:18 +0000
+
+zarr (2.13.3+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Wed, 12 Oct 2022 06:39:54 +0000
+
+zarr (2.13.2+ds-2) unstable; urgency=medium
+
+  * Temporary disamble tests that are broken on BE architectures.
+    See also https://github.com/zarr-developers/zarr-python/issues/844
+    and https://github.com/zarr-developers/zarr-python/pull/869.
+    Closes: #1018939.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Fri, 07 Oct 2022 05:39:07 +0000
+
+zarr (2.13.2+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sat, 01 Oct 2022 06:51:56 +0000
+
+zarr (2.13.0+ds-2) unstable; urgency=medium
+
+  * debian/tests:
+    - skip tests requiring access to the unavailable fixture folder.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sun, 25 Sep 2022 07:04:36 +0000
+
+zarr (2.13.0+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/patches:
+    - refresh all patches.
+  * debian/control:
+    - add dependency on python3-sphinx-copybutton.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sun, 25 Sep 2022 06:33:48 +0000
+
+zarr (2.12.0+ds-2) unstable; urgency=medium
+
+  * Fix d/copyright formatting.
+  * Fix d/watch.
+  * debian/rules:
+    - set LC_ALL=C.UTF-8 to build documentation reproducibly.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sat, 17 Sep 2022 16:24:40 +0000
+
+zarr (2.12.0+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Standard version bumped to 4.6.1, no changes.
+  * debian/control:
+    - build-depend on pybuild-plugin-pyproject.
+  * debian/tests:
+    - autopackagetes with all supported Python versions.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Fri, 24 Jun 2022 07:07:44 +0000
+
+zarr (2.11.3+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/rules:
+    - fix zarr/version.py generation (strip +ds suffix).
+  * debian/patches:
+    - improved 0001-No-setuptools-scm.patch.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sun, 10 Apr 2022 06:50:20 +0000
+
+zarr (2.11.1+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update d/copyrigth.
+  * Update dependencies in d/control.
+    Added dependencies on python3-fsspec,
+    python3-pytest-doctestplus, python3-pytest-timeout.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sat, 12 Mar 2022 08:39:15 +0000
+
+zarr (2.10.3+ds-1) unstable; urgency=medium
+
+  * New usptream version.
+  * De-enable previously disabled tests in debian/rules.
+  * Update copyright file.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sat, 27 Nov 2021 11:30:37 +0000
+
+zarr (2.10.2+ds-2) unstable; urgency=medium
+
+  * debian/tests:
+    - fix autopkgtests (exclude tests requiring write
+      permissions on system directories).
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sat, 23 Oct 2021 08:22:31 +0000
+
+zarr (2.10.2+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/control:
+    - drop explicit build dependency on dh-sequence-python3,
+      not needed.
+  * debian/rules:
+    - tempary disable failing test, see
+      https://github.com/zarr-developers/zarr-python/issues/858
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Fri, 22 Oct 2021 07:22:00 +0000
+
+zarr (2.10.1+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/control:
+    - add build dependency on dh-sequence-python3.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sat, 02 Oct 2021 10:52:06 +0000
+
+zarr (2.10.0+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Standards version bumped to 4.6.0 (no chenges).
+  * debian/patches:
+    - refresh all patches.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Tue, 21 Sep 2021 06:14:26 +0000
+
+zarr (2.9.5+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Fix autopkgtest (skip tests that require write
+    permission in the installation root directory).
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sat, 04 Sep 2021 09:14:04 +0000
+
+zarr (2.9.3+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sun, 29 Aug 2021 18:01:27 +0000
+
+zarr (2.8.3+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update the debian/watch file.
+  * debian/patches:
+    - refresh all patches.
+  * debian/control:
+    - remove undefined substitution variables.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sun, 22 Aug 2021 10:24:43 +0000
+
+zarr (2.6.1+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Standards-Version bumped to 4.5.1 (no changes).
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sat, 05 Dec 2020 17:43:32 +0000
+
+zarr (2.5.0+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Standard version bumped to 4.5.0 (non changes).
+  * debian/control:
+    - build-depend on python3-sphinx-issues
+    - suggest jupyter-notebook
+  * debian/patches:
+    - refresh all patches
+    - drop 0002-No-spninx-issues.patch no longer needed
+      (now sphinx-issues is available in debian)
+    - drop 0002-Clean-fixtures.patch (use install file instead)
+    - add the Forwarded field to remaining patches
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sat, 10 Oct 2020 07:50:40 +0000
+
+zarr (2.4.0+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Fix project URL.
+  * debian/control:
+    - build depend on python3-sphinx-rtd-theme
+  * debian/patches:
+    - drop 0002-Use-mock-for-stdlib.patch, no longer necessary
+    - refresh and renumber remaining patches
+  * debian/python3-zarr.docs:
+    - README.rst --> README.md
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Mon, 13 Jan 2020 21:15:15 +0000
+
+zarr (2.3.2+ds-2) unstable; urgency=medium
+
+  * Team upload.
+  * Source-only upload
+
+ -- Anton Gladky <gladk@debian.org>  Sun, 05 Jan 2020 10:49:26 +0100
+
+zarr (2.3.2+ds-1) unstable; urgency=medium
+
+  * Initial version (Closes: #888481)
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sun, 06 Oct 2019 08:09:07 +0000

@@ -1,4 +1,42 @@
 #!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+include /usr/share/dpkg/architecture.mk
+include /usr/share/dpkg/pkg-info.mk
+export SETUPTOOLS_SCM_PRETEND_VERSION=$(DEB_VERSION_UPSTREAM:+ds=)
+
+export PYBUILD_NAME=zarr
+export PYBUILD_TEST_ARGS=\
+-k "not test_hierarchy \
+and not test_utf8_encoding \
+and not [static_flat] \
+and not [static_nested] \
+and not [static_flat_legacy] \
+and not [static_nested_legacy] \
+and not test_meta_prefix_6853 \
+and not test_complex" \
+--pyargs ${PYBUILD_NAME}
+
+ifneq (,$(filter $(DEB_BUILD_ARCH),s390x))
+export PYBUILD_DISABLE=test
+endif
 
 %:
-	dh $@
+	dh $@ --buildsystem=pybuild
+
+execute_after_dh_auto_build-indep: export http_proxy=127.0.0.1:9
+execute_after_dh_auto_build-indep: export https_proxy=127.0.0.1:9
+execute_after_dh_auto_build-indep:
+ifeq (,$(filter nodoc,$(DEB_BUILD_OPTIONS)))
+	cd $(shell pybuild --build -i python3 -s custom --build-args 'echo {build_dir}') && \
+	PYTHONPATH=. \
+	LC_ALL=C.UTF-8 LANGUAGE=C.UTF-8 \
+	sphinx-build -N -E -T -b html $(CURDIR)/docs $(CURDIR)/.pybuild/docs/html
+	rm -rf $(CURDIR)/.pybuild/docs/html/.doctrees
+endif
+
+execute_after_dh_auto_test:
+	$(RM) -r .pybuild/*/build/fixture .pybuild/*/build/data

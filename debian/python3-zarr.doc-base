@@ -1,0 +1,13 @@
+Document: zarr
+Title: Zarr Documentation
+Author: Alistair Miles
+Abstract: This document includes the Zarr user manual and
+ reference guide.
+Section: Programming/Python
+
+Format: HTML
+Index: /usr/share/doc/python3-zarr/html/index.html
+Files: /usr/share/doc/python3-zarr/html/*.html
+
+Format: text
+Files: /usr/share/doc/python3-zarr/html/_sources/*.txt
