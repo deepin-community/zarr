@@ -1,0 +1,152 @@
+[build-system]
+requires = ["setuptools>=64.0.0", "setuptools-scm>1.5.4"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "zarr"
+description = "An implementation of chunked, compressed, N-dimensional arrays for Python"
+readme = { file = "README.md", content-type = "text/markdown" }
+maintainers = [
+    { name = "Alistair Miles", email = "alimanfoo@googlemail.com" }
+]
+requires-python = ">=3.9"
+dependencies = [
+    'asciitree',
+    'numpy>=1.23',
+    'fasteners; sys_platform != "emscripten"',
+    'numcodecs>=0.10.0',
+]
+dynamic = [
+  "version",
+]
+classifiers = [
+    'Development Status :: 6 - Mature',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Information Technology',
+    'Intended Audience :: Science/Research',
+    'License :: OSI Approved :: MIT License',
+    'Programming Language :: Python',
+    'Topic :: Software Development :: Libraries :: Python Modules',
+    'Operating System :: Unix',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+]
+license = { text = "MIT" }
+
+[project.optional-dependencies]
+jupyter = [
+    'notebook',
+    'ipytree>=0.2.2',
+    'ipywidgets>=8.0.0',
+]
+docs = [
+    'sphinx',
+    'sphinx-automodapi',
+    'sphinx_design',
+    'sphinx-issues',
+    'sphinx-copybutton',
+    'pydata-sphinx-theme',
+    'numpydoc',
+    'numcodecs[msgpack]',
+]
+
+[project.urls]
+"Bug Tracker" = "https://github.com/zarr-developers/zarr-python/issues"
+Changelog = "https://zarr.readthedocs.io/en/stable/release.html"
+Discussions = "https://github.com/zarr-developers/zarr-python/discussions"
+Documentation = "https://zarr.readthedocs.io/"
+Homepage = "https://github.com/zarr-developers/zarr-python"
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "pragma: ${PY_MAJOR_VERSION} no cover",
+    '.*\.\.\.' # Ignore "..." lines
+]
+
+[tool.coverage.run]
+omit = [
+    "zarr/meta_v1.py",
+    "bench/compress_normal.py",
+]
+
+[tool.setuptools]
+packages = ["zarr", "zarr._storage", "zarr.tests"]
+license-files = ["LICENSE.txt"]
+
+[tool.setuptools_scm]
+version_scheme = "guess-next-dev"
+local_scheme = "dirty-tag"
+write_to = "zarr/version.py"
+
+[tool.ruff]
+line-length = 100
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".ruff_cache",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "venv",
+    "docs"
+]
+
+[tool.ruff.lint]
+extend-select = [
+    "B"
+]
+
+[tool.black]
+line-length = 100
+exclude = '''
+/(
+    \.git
+  | \.mypy_cache
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | docs
+)/
+'''
+
+[tool.mypy]
+ignore_missing_imports = true
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+doctest_optionflags = [
+    "NORMALIZE_WHITESPACE",
+    "ELLIPSIS",
+    "IGNORE_EXCEPTION_DETAIL",
+]
+addopts = [
+    "--durations=10",
+]
+filterwarnings = [
+    "error:::zarr.*",
+    "ignore:PY_SSIZE_T_CLEAN will be required.*:DeprecationWarning",
+    "ignore:The loop argument is deprecated since Python 3.8.*:DeprecationWarning",
+    "ignore:The .* is deprecated and will be removed in a Zarr-Python version 3*:FutureWarning",
+    "ignore:The experimental Zarr V3 implementation in this version .*:FutureWarning",
+]
+
+
+[tool.codespell]
+ignore-words-list = "ba,ihs,kake,nd,noe,nwo,te,fo,zar"
+skip = 'fixture,.git'

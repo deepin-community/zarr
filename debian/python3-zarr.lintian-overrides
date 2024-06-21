@@ -1,0 +1,7 @@
+# Vendored fonts coming from the sphinx theme
+extra-license-file [usr/share/doc/python3-zarr/html/_static/vendor/fontawesome/5.13.0/LICENSE.txt]
+font-outside-font-dir [usr/share/doc/python3-zarr/html/_static/vendor/fontawesome/5.13.0/webfonts/*]
+font-in-non-font-package [usr/share/doc/python3-zarr/html/_static/vendor/fontawesome/5.13.0/webfonts/*]
+
+# False positive
+package-contains-documentation-outside-usr-share-doc [usr/lib/python3/dist-packages/zarr-*.*-info/*]
